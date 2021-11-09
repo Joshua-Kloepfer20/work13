@@ -105,9 +105,9 @@ int main(int argc, char *argv[]) {
 		char *readin = malloc(500);
 		struct pop_entry data;
 		int file = open("bpop.data", O_APPEND | O_WRONLY);
-		printf("Enter new value year borough population: ");
+		printf("Enter new value year,borough,population: ");
 		fgets(readin, 500, stdin);
-		sscanf(readin, "%d %s %d", &(data.year), data.boro, &(data.population));
+		sscanf(readin, "%d,%[^,],%d", &(data.year), data.boro, &(data.population));
 		int len = strlen(data.boro);
 		write(file, &len, 4);
 		write(file, &(data.year), 4);
@@ -140,10 +140,10 @@ int main(int argc, char *argv[]) {
 		fgets(readin, 500, stdin);
 		int entry;
 		sscanf(readin, "%d", &entry);
-		printf("Enter new value year borough population: ");
+		printf("Enter new value year,borough,population: ");
 		fgets(readin, 500, stdin);
 		printf("%s%d\n", readin, entry);
-		sscanf(readin, "%d %s %d", &(data[entry].year), data[entry].boro, &(data[entry].population));
+		sscanf(readin, "%d,%[^,],%d", &(data[entry].year), data[entry].boro, &(data[entry].population));
 		for (i = 0; i < reallocsize; i++) {
 			len = strlen(data[i].boro);
 			write(file, &len, 4);
